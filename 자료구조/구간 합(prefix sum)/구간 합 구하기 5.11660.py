@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 map_length, quiz_length = map(int, input().split(' '))
 
 mini_map = [[0] * (map_length + 1)]
