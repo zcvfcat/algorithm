@@ -6,16 +6,16 @@
 # for i in range(n):
 #     prefix_numbers[i + 1] = prefix_numbers[i] + numbers[i]
 
-# count = [0] * n
+# count = 0
 
 # for i in range(n):
 #     for j in range(i + 1, n + 1):
 #         k = (prefix_numbers[j] - prefix_numbers[i]) % m
 
 #         if k == 0:
-#             count[i] += 1
+#             count += 1
 
-# print(sum(count))
+# print(count)
 
 # 아 시간 초과
 # 답 보장~~~
@@ -27,3 +27,33 @@
 #     3 4 6 -> 2
 #       1 3 -> 1
 #         2 -> 0
+
+n, m = map(int, input().split(' '))
+
+numbers = list(map(int, input().split(' ')))
+prefix_numbers = [0] * (n + 1)
+count = [0] * (m + 1)
+
+for i in range(n):
+    prefix_numbers[i + 1] = (prefix_numbers[i] + numbers[i]) % m
+    count[prefix_numbers[i + 1]] += 1
+
+print(numbers)
+print(prefix_numbers)
+print(count)
+
+ans = count[0]
+
+for i in range(m + 1):
+    ans += (count[i] * (count[i] - 1)) // 2
+
+print(ans)
+
+# 1 2 3 1 2
+# 1 2       -> 1
+# 1 2 3     -> 2
+# 1 2 3 1 2 -> 3
+#   2 3 1   -> 4
+#     3     -> 5
+#     3 1 2 -> 6
+#       1 2 -> 7
