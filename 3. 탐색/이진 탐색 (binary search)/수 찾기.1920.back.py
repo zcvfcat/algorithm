@@ -14,7 +14,7 @@ for i in range(m):
     end = len(a) - 1
 
     while start <= end:
-        mid_index = int((start + end) / 2)
+        mid_index = (start + end) // 2
         mid_value = a[mid_index]
 
         if mid_value > target:
