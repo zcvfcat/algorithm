@@ -8,11 +8,9 @@ visited = [False] * len(graph)
 
 
 def recur_dfs(graph, node):
-    print(node)
     visited[node] = True
     for edge in graph[node]:
         if not visited[edge]:
-            visited[edge] = True
             recur_dfs(graph, edge)
 
 
@@ -21,16 +19,15 @@ recur_dfs(graph, 1)
 visited = [False] * len(graph)
 
 
-# def stack_dfs(graph, node):
-#     stack = [node]
+def stack_dfs(graph, node):
+    stack = [node]
 
-#     while stack:
-#         node = stack.pop()
-#         print(node)
-#         if not visited[node]:
-#             edges = graph[node]
-#             stack.extend(edges)
-#             visited[node] = True
+    while stack:
+        node = stack.pop()
+        if not visited[node]:
+            edges = graph[node]
+            stack.extend(edges)
+            visited[node] = True
 
 
-# stack_dfs(graph, 1)
+stack_dfs(graph, 1)
