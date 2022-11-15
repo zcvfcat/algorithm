@@ -23,15 +23,15 @@ def dijkstra(start):
     distance[start] = 0
 
     while q:
-        node, node_weight = heapq.heappop(q)  # min 우선순위 힙 (가장 작은 거리) 가 나옴
+        node, node_weight = heapq.heappop(q)  # 현재 (노드, 시작점에서 노드 비용)
 
-        if distance[node] < node_weight:
+        if distance[node] < node_weight: # visited 써도 되지만 최소 비용값으로도 가능
             continue
 
         for edge, edge_wight in graph[node]:
-            cost = node_weight + edge_wight
+            cost = node_weight + edge_wight  # 시작점에서 (노드 비용 + 엣지까지 비용) = 시작점에서 엣지까지 비용
 
-            if cost < distance[edge]:
+            if cost < distance[edge]:  # 기존 시작점 - 엣지 비용 : 신규 시작점 - 엣지 비용
                 distance[edge] = cost
                 heapq.heappush(q, (edge, cost))
 

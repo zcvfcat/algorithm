@@ -24,7 +24,7 @@ while q:
         continue
 
     for edge, edge_weight in graph[node_edge]:
-        cost = distance[node_edge] + edge_weight
+        cost = node_weight + edge_weight
 
         if cost < distance[edge]:
             distance[edge] = cost
