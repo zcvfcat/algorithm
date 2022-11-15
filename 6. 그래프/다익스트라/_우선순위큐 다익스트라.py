@@ -29,10 +29,11 @@ def dijkstra(start):
             continue
 
         for next_edge, next_wight in graph[now_edge]:
+            cost = now_weight + next_wight
 
-            if now_weight + next_wight < distance[next_edge]:
-                distance[next_edge] = now_weight + next_wight
-                heapq.heappush(q, (next_edge, now_weight + next_wight))
+            if cost < distance[next_edge]:
+                distance[next_edge] = cost
+                heapq.heappush(q, (next_edge, cost))
 
 
 dijkstra(start)
