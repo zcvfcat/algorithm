@@ -23,17 +23,17 @@ def dijkstra(start):
     distance[start] = 0
 
     while q:
-        now_edge, now_weight = heapq.heappop(q)  # min 우선순위 힙 (가장 작은 거리) 가 나옴
+        node, node_weight = heapq.heappop(q)  # min 우선순위 힙 (가장 작은 거리) 가 나옴
 
-        if distance[now_edge] < now_weight:
+        if distance[node] < node_weight:
             continue
 
-        for next_edge, next_wight in graph[now_edge]:
-            cost = now_weight + next_wight
+        for edge, edge_wight in graph[node]:
+            cost = node_weight + edge_wight
 
-            if cost < distance[next_edge]:
-                distance[next_edge] = cost
-                heapq.heappush(q, (next_edge, cost))
+            if cost < distance[edge]:
+                distance[edge] = cost
+                heapq.heappush(q, (edge, cost))
 
 
 dijkstra(start)

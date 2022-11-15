@@ -50,14 +50,14 @@ def dijkstra(start_node):
         distance[edge] = weight  # 시작 노드와 인접 최단 거리 계산
 
     for _ in range(width - 1):  # 시작 노드를 제외 처리
-        now_edge = get_smallest_distance()
-        visited[now_edge] = True
+        node = get_smallest_distance()
+        visited[node] = True
 
-        for next_edge, next_weight in graph[now_edge]:
-            cost = distance[now_edge] + next_weight
+        for edge, edge_weight in graph[node]:
+            cost = distance[node] + edge_weight
 
-            if cost < distance[next_edge]:
-                distance[next_edge] = cost
+            if cost < distance[edge]:
+                distance[edge] = cost
 
 
 dijkstra(start)

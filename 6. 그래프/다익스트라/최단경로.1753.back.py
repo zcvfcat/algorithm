@@ -18,17 +18,17 @@ heapq.heappush(q, (start, 0))
 distance[start] = 0
 
 while q:
-    now_edge, now_weight = heapq.heappop(q)
+    node_edge, node_weight = heapq.heappop(q)
 
-    if distance[now_edge] < now_weight:
+    if distance[node_edge] < node_weight:
         continue
 
-    for next_edge, next_weight in graph[now_edge]:
-        cost = distance[now_edge] + next_weight
+    for edge, edge_weight in graph[node_edge]:
+        cost = distance[node_edge] + edge_weight
 
-        if cost < distance[next_edge]:
-            distance[next_edge] = cost
-            heapq.heappush(q, (next_edge, cost))
+        if cost < distance[edge]:
+            distance[edge] = cost
+            heapq.heappush(q, (edge, cost))
 
 for i in range(1, width + 1):
     if distance[i] != sys.maxsize:
