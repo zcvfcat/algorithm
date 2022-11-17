@@ -20,8 +20,8 @@ edge_range = len(edges)
 distance = [[sys.maxsize for j in range(node_range + 1)] for i in range(node_range + 1)]
 
 # 초기화
-for i in range(1, node_range + 1):
-    distance[i][i] = 0
+for node in range(1, node_range + 1):
+    distance[node][node] = 0
 
 # 노드 인접 엣지 업데이트
 for node, edge, weight in edges:

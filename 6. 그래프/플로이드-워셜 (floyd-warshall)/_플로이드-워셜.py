@@ -1,27 +1,43 @@
-# 모르겠는데?????
 import sys
-INF = sys.maxsize
 
-node_range = 4
+edges = [[1, 2, 2],
+         [1, 3, 3],
+         [1, 4, 1],
+         [1, 5, 10],
+         [2, 4, 2],
+         [3, 4, 1],
+         [3, 5, 1],
+         [4, 5, 3],
+         [3, 5, 10],
+         [3, 1, 8],
+         [1, 4, 2],
+         [5, 1, 7],
+         [3, 4, 2],
+         [5, 2, 4], ]
 
-graph = [
-    [0, 2, INF, 4],
-    [2, 0, INF, 5],
-    [3, INF, 0, INF],
-    [INF, 2, 1, 0]
-]
+node_range = 5
+edge_range = len(edges)
+distance = [[sys.maxsize for _ in range(node_range + 1)] for _ in range(node_range + 1)]
 
-distance = [[INF for _ in range(node_range)] for _ in range(node_range)]
+# 초기화
+for node in range(1, node_range + 1):
+    distance[node][node] = 0
 
-for node in range(node_range):
-    for edge in range(node_range):
-        distance[node][edge] = graph[node][edge]
+# 노드 인접 엣지 업데이트
+for node, edge, weight in edges:
+    if distance[node][edge] > weight:
+        distance[node][edge] = weight
 
-for k in range(node_range):
-    for node in range(node_range):
-        for edge in range(node_range):
-            cost = distance[node][k] + distance[k][edge]
-            if distance[node][edge] > cost:
-                distance[node][edge] = cost
+# 플로이드-워셜 수행
+for mid_node in range(1, node_range):
+    for node in range(1, node_range):
+        for edge in range(1, node_range):
+            distance[node][edge] = min(distance[node][edge], distance[node][mid_node] + distance[mid_node][edge])
 
-print(distance)
+for node in range(1, node_range):
+    for edge in range(1, node_range):
+        if distance[node][edge] == sys.maxsize:
+            print(0, end='\t')
+        else:
+            print(distance[node][edge], end='\t')
+    print()
