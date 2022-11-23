@@ -2,17 +2,22 @@ import sys
 import heapq
 input = sys.stdin.readline
 
-n = int(input())
+n, m = map(int, input().split())
+namus = [*map(int,input().split())]
 
-q = []
+left = 1
+right = max(namus)
 
-for _ in range(n):
-    number = int(input())
+while left <= right:
+    mid = (left + right) // 2
+    rest_namu = 0
+    for namu in namus:
+        if namu > mid:
+            rest_namu += namu - mid
 
-    if number != 0:
-        heapq.heappush(q, number)
+    if rest_namu >= m:
+        left = mid + 1
     else:
-        if len(q):
-            print(heapq.heappop(q))
-        else:
-            print(0)
+        right = mid - 1
+
+print(right)
