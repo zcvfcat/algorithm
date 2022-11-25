@@ -1,51 +1,38 @@
 """
-수빈이는 동생과 숨바꼭질을 하고 있다. 수빈이는 현재 점 N(0 ≤ N ≤ 100,000)에 있고, 동생은 점 K(0 ≤ K ≤ 100,000)에 있다. 수빈이는 걷거나 순간이동을 할 수 있다. 만약, 수빈이의 위치가 X일 때 걷는다면 1초 후에 X-1 또는 X+1로 이동하게 된다. 순간이동을 하는 경우에는 1초 후에 2*X의 위치로 이동하게 된다.
+첫째 줄에 문제의 수 N(1 ≤ N ≤ 32,000)과 먼저 푸는 것이 좋은 문제에 대한 정보의 개수 M(1 ≤ M ≤ 100,000)이 주어진다. 둘째 줄부터 M개의 줄에 걸쳐 두 정수의 순서쌍 A,B가 빈칸을 사이에 두고 주어진다. 이는 A번 문제는 B번 문제보다 먼저 푸는 것이 좋다는 의미이다.
 
-수빈이와 동생의 위치가 주어졌을 때, 수빈이가 동생을 찾을 수 있는 가장 빠른 시간이 몇 초 후인지 구하는 프로그램을 작성하시오.
+항상 문제를 모두 풀 수 있는 경우만 입력으로 주어진다.
 """
 
 import sys
-from collections import deque
+# from collections import deque
+import heapq
 input = sys.stdin.readline
 
-# 첫 번째 줄에 수빈이가 있는 위치 N과 동생이 있는 위치 K가 주어진다. N과 K는 정수이다.
+n, m = map(int, input().split())
+graph = [[] for _ in range(n + 1)]
+degrees = [0 for _ in range(n + 1)]
+q = []
 
-n, k = map(int, input().split())
-path = [False] * 100_001
+ans = []
 
-step = [lambda x: x + 1, lambda x: x - 1, lambda x: x * 2]
+for _ in range(m):
+    node, edge = map(int, input().split())
+    graph[node].append(edge)
+    degrees[edge] += 1
 
+for node in range(1, n + 1):
+    if degrees[node] == 0:
+        heapq.heappush(q, node)
 
-def is_boundary(x):
-    return 0 <= x <= 100000
+while q:
+    node = heapq.heappop(q)
+    ans.append(node)
 
+    for edge in graph[node]:
+        degrees[edge] -= 1
 
-def bfs(start_node):
-    global k
-    q = deque([(start_node, 0)])
-    path[start_node] = start_node
+        if degrees[edge] == 0:
+            heapq.heappush(q, edge)
 
-    while q:
-        node, count = q.popleft()
-        if k == node:
-            return count
-
-        for l in step:
-            edge = l(node)
-
-            if is_boundary(edge) and not path[edge]:
-                path[edge] = node
-                q.append((edge, count + 1))
-
-
-count = bfs(n)
-
-prev = k
-paths = [prev]
-while prev != n:
-    paths.append(path[prev])
-    prev = path[prev]
-
-paths.reverse()
-print(count)
-print(' '.join(map(str, paths)))
+print(' '.join(map(str, ans)))
