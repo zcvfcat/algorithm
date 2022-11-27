@@ -2,32 +2,38 @@ from collections import Counter
 
 
 def solution(n, computers):
-    parent = [i for i in range(n)]
+    groups = [i for i in range(n)]
 
     def find(node):
-        if parent[node] != node:
-            parent[node] = find(parent[node])
-        return parent[node]
+        if groups[node] != node:
+            groups[node] = find(groups[node])
+        return groups[node]
 
     def union(node_a, node_b):
         node_a = find(node_a)
         node_b = find(node_b)
 
         if node_a <= node_b:
-            parent[node_b] = node_a
+            groups[node_b] = node_a
         else:
-            parent[node_a] = node_b
+            groups[node_a] = node_b
 
-    for node_index in range(n):
-        for edge_index in range(n):
+    for node in range(n):
+        for edge in range(n):
+            if node != edge:
+                if computers[node][edge] == 1:
+                    union(node, edge)
 
-            if node_index == edge_index:
-                continue
+    counter = {}
+    for group in groups:
+        node = find(group)
 
-            if computers[node_index][edge_index] == 1:
-                union(node_index, edge_index)
+        if node in counter:
+            counter[node] += 1
+        else:
+            counter[node] = 1
 
-    return len(Counter(parent))
+    return len(counter)
 
 
 print(solution(3,	[[1, 1, 0], [1, 1, 0], [0, 0, 1]]) == 2)
