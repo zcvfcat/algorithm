@@ -1,38 +1,39 @@
-"""
-첫째 줄에 문제의 수 N(1 ≤ N ≤ 32,000)과 먼저 푸는 것이 좋은 문제에 대한 정보의 개수 M(1 ≤ M ≤ 100,000)이 주어진다. 둘째 줄부터 M개의 줄에 걸쳐 두 정수의 순서쌍 A,B가 빈칸을 사이에 두고 주어진다. 이는 A번 문제는 B번 문제보다 먼저 푸는 것이 좋다는 의미이다.
-
-항상 문제를 모두 풀 수 있는 경우만 입력으로 주어진다.
-"""
-
 import sys
-# from collections import deque
-import heapq
-input = sys.stdin.readline
+read = sys.stdin.readline
+sys.setrecursionlimit(10000)
 
-n, m = map(int, input().split())
-graph = [[] for _ in range(n + 1)]
-degrees = [0 for _ in range(n + 1)]
-q = []
+step = [(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (-1, -1), (-1, 1), (1, -1)]
 
-ans = []
 
-for _ in range(m):
-    node, edge = map(int, input().split())
-    graph[node].append(edge)
-    degrees[edge] += 1
+def in_boundary(y, x):
+    global w, h
+    return 0 <= y < h and 0 <= x < w
 
-for node in range(1, n + 1):
-    if degrees[node] == 0:
-        heapq.heappush(q, node)
 
-while q:
-    node = heapq.heappop(q)
-    ans.append(node)
+def dfs(y,x):
+    field[y][x] = 0
+    for dy, dx in step:
+        ny = y + dy
+        nx = x + dx
+        if in_boundary(ny, nx) and field[ny][nx] == 1:
+            dfs(ny, nx)
 
-    for edge in graph[node]:
-        degrees[edge] -= 1
 
-        if degrees[edge] == 0:
-            heapq.heappush(q, edge)
+while True:
+    global w, h
+    w, h = map(int, read().split())
+    if w == 0 and h == 0:
+        break
+    field = []
+    count = 0
 
-print(' '.join(map(str, ans)))
+    for _ in range(h):
+        field.append(list(map(int, read().split())))
+
+    for y in range(h):
+        for x in range(w):
+            if field[y][x] == 1:
+                dfs(y, x)
+                count += 1
+
+    print(count)
