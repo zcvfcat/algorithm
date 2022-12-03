@@ -1,5 +1,14 @@
 def solution(brown, yellow):
-    total = brown + yellow
+    area = brown + yellow
+
+    for width in range(int(area/2) + 1, -1, -1):
+        if area % width != 0:
+            continue
+
+        height = area / width
+
+        if (width - 2) * (height - 2) == yellow:
+            return [width, height]
 
 
 print(solution(10, 2) == [4, 3])
