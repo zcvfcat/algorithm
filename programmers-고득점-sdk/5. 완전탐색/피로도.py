@@ -1,14 +1,25 @@
+ans = 0
+
+
 def solution(k, dungeons):
     edges_length = len(dungeons)
-    visited = [False] * (edges_length + 1)
+    visited = [False] * (edges_length)
 
-    # def dfs(node, limit, count):
-    #     for index in range(edges_length):
-    #         edge, weight = dungeons[index]
-    #         if limit > weight and not visited[index]:
-    #             visited[node] = True
-    #             dfs(edge, )
-    #             visited[node] = False
+    def dfs(limit, count):
+        global ans
+        if ans < count:
+            ans = count
+
+        for edge in range(edges_length):
+            require, consume = dungeons[edge]
+
+            if limit >= require and not visited[edge]:
+                visited[edge] = True
+                dfs(limit - consume, count + 1)
+                visited[edge] = False
+
+    dfs(k, 0)
+    return ans
 
 
 print(solution(80, [[80, 20], [50, 40], [30, 10]]) == 3)
