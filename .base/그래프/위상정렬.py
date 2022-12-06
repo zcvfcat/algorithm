@@ -1,3 +1,4 @@
+# O(V + E)
 from functools import reduce
 from collections import deque
 
@@ -29,9 +30,9 @@ for node in range(1, node_length):
         q.append(node)
 
 while q:
-    node = q.popleft()
+    node = q.popleft()  # O(V)
     # print(node)
-    for edge in graph[node]:
+    for edge in graph[node]:  # O(E)
         degrees[edge] -= 1
 
         if degrees[edge] == 0:

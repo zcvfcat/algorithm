@@ -1,3 +1,4 @@
+# O(E logV)
 import sys
 import heapq
 
@@ -23,12 +24,12 @@ def dijkstra(start_node):
     heapq.heappush(q, (start_node, 0))
 
     while q:
-        node, node_weight = heapq.heappop(q)
+        node, node_weight = heapq.heappop(q)  # O(logV)
 
         if distance[node] > node_weight:
             continue
 
-        for edge, edge_weight in graph[node]:
+        for edge, edge_weight in graph[node]:  # O(E)
             cost = node_weight + edge_weight
 
             if distance[edge] > cost:
