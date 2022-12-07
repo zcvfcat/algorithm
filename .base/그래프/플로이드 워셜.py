@@ -10,10 +10,10 @@ def floyd_warshall(node_length, edges):
     for node, edge, cost in edges:
         distance[node - 1][edge - 1] = cost
 
-    for point in range(node_length):
+    for route in range(node_length):
         for node in range(node_length):
             for edge in range(node_length):
-                distance[node][edge] = min(distance[node][edge], distance[node][point] + distance[point][edge])
+                distance[node][edge] = min(distance[node][edge], distance[node][route] + distance[route][edge])
 
     return distance
 
