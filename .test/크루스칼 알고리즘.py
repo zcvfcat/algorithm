@@ -34,8 +34,8 @@ def union(node_a, node_b):
 
 
 sorted_edges = sorted(edges)
-total_cost = 0
 
+total_cost = 0
 for edge in edges:
     cost, node_a, node_b = edge
 
