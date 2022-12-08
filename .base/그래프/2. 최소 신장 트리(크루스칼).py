@@ -33,7 +33,7 @@ def union(node_a, node_b):
         parent[node_a] = node_b
 
 
-sorted_edges = sorted(edges)
+sorted_edges = sorted(edges) # O(E logE)
 total_cost = 0
 
 for edge in edges:
