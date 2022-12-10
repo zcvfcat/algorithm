@@ -10,6 +10,7 @@ graph = [
     [(3, 1), (2, 2)],
 ]
 
+
 visited = [False for _ in range(node_length + 1)]
 
 

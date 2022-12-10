@@ -22,6 +22,7 @@ step = [
 start = (0, 0)
 end = (7, 6)
 
+
 class Node():
     """A node class for A* Pathfinding"""
 
@@ -118,6 +119,7 @@ def astar(maze, start, end):
 
             # Add the child to the open list
             open_list.append(child)
+
 
 path = astar(maze, start, end)
 print(path)

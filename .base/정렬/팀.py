@@ -1,4 +1,4 @@
-def binary_search(array, value, left, right):
+def binary_search(array, value, left, right) -> int:
     if left > right:
         return left
 
@@ -11,14 +11,12 @@ def binary_search(array, value, left, right):
     elif value < array[mid]:
         return binary_search(array, value, left, mid - 1)
 
-# 작은 array의 경우 작게 정렬 실행
-
 
 def insertion_sort(array):
     for index in range(1, len(array)):
         value = array[index]
         pos = binary_search(array, value, 0, index - 1)
-        array = array[:pos] + [value] + array[pos:index] + array[index+1:]
+        array = array[:pos] + [value] + array[pos + 1:index] + array[index + 1:]
     return array
 
 
