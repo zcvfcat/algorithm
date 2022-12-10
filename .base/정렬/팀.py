@@ -1,25 +1,19 @@
-def binary_search(array, item, start, end):
-    if start == end:
-        if array[start] > item:
-            return start
-        else:
-            return start + 1
-    if start > end:
-        return start
+def binary_search(array, value, left, right):
+    if left > right:
+        return left
 
-    mid = (start + end) // 2
+    mid = (left + right) // 2
 
-    if array[mid] < item:
-        return binary_search(array, item, mid + 1, end)
-
-    elif array[mid] > item:
-        return binary_search(array, item, start, mid - 1)
-
-    else:
+    if value == array[mid]:
         return mid
-
+    elif value > array[mid]:
+        return binary_search(array, value, mid + 1, right)
+    elif value < array[mid]:
+        return binary_search(array, value, left, mid - 1)
 
 # 작은 array의 경우 작게 정렬 실행
+
+
 def insertion_sort(array):
     for index in range(1, len(array)):
         value = array[index]
