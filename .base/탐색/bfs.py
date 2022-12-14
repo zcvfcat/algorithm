@@ -23,7 +23,7 @@ def bfs(start_node):
 
     while q:
         node = q.popleft()
-        # print(node)
+        print(node)
         for edge in graph[node]:
             if not visited[edge]:
                 visited[edge] = True
