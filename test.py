@@ -1,11 +1,34 @@
-k = int(input())
-array = []
+import sys
+input = sys.stdin.readline
 
-for _ in range(k):
-    age, name = input().split()
-    array.append((int(age), name))
+n = int(input())
+maze = [[*map(int, input().rstrip())] for _ in range(n)]
+txt = []
 
-array.sort(key=lambda x: x[0])
 
-for age, name in array:
-    print(f'{age} {name}')
+def dfs(y, x, n):
+    check = maze[y][x]
+
+    for h in range(y, y + n):
+        for w in range(x, x + n):
+            if check != maze[h][w]:
+                check = -1
+                break
+
+    if check == -1:
+        print("(", end='')
+        n = n // 2
+        dfs(y, x, n)
+        dfs(y, x + n, n)
+        dfs(y + n, x, n)
+        dfs(y + n, x + n, n)
+        print(")", end='')
+
+    elif check == 1:
+        print(1, end='')
+
+    else:
+        print(0, end='')
+
+
+dfs(0, 0, n)

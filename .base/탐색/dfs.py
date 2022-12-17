@@ -17,7 +17,6 @@ visited = [False for _ in range(node_length + 1)]
 
 def recur_dfs(node):
     visited[node] = True
-    print(node)
 
     for edge in graph[node]:
         if not visited[edge]:
@@ -38,5 +37,5 @@ def dfs(start_node):
                 stack.append(edge)
 
 
-# recur_dfs(1)
-dfs(1)
+print(recur_dfs(1))
+# dfs(1)
