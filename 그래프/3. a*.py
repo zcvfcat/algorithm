@@ -31,29 +31,35 @@ step = [
 start = (0, 0)
 end = (7, 6)
 
-def in_boundary(y,x):
+height = len(maze)
+width = len(maze[0])
+
+
+def in_boundary(y, x):
     global height, width
 
     return 0 <= y < height and 0 <= x < width
 
 
 class Node:
-    def __init__(self, parent= None, position= None) -> None:
+    def __init__(self, parent=None, position=None) -> None:
         self.parent = parent
         self.position = position
 
         self.g = 0
         self.h = 0
         self.f = 0
-    
+
     def __eq__(self, other: object) -> bool:
         return self.position == other.position
 
-def heuristic(node, goal, d = 1, d2=2 ** 0.5):
+
+def heuristic(node, goal, d=1, d2=2 ** 0.5):
     dx = abs(node.position[0] - goal.position[0])
     dy = abs(node.position[1] - goal.position[1])
 
     return d * (dy + dx) + (d2 - 2*d) * min(dy, dx)
+
 
 def a_star(maze, start, end):
     start_node = Node(None, start)
@@ -78,7 +84,7 @@ def a_star(maze, start, end):
         closed_list.append(current_idx)
 
         if current_node == end_node:
-            path =[]
+            path = []
             current = current_node
             while current is not None:
                 path.append(current.position)
@@ -87,14 +93,14 @@ def a_star(maze, start, end):
 
         children = []
 
-        for dy, dx in step:
+        for dy, dx, weight in step:
             ny = current_node.position[0] + dy
             nx = current_node.position[1] + dx
 
             if in_boundary(ny, nx) and maze[ny][nx] == 0:
-                next_node = Node(current_node, (ny,nx))
+                next_node = Node(current_node, (ny, nx))
                 children.append(next_node)
-        
+
         for child in children:
             if child in closed_list:
                 continue
@@ -105,9 +111,9 @@ def a_star(maze, start, end):
 
             if len([open_node for open_node in open_list if child == open_node and child.g > open_node.g]) > 0:
                 continue
-                    
+
             open_list.append(child)
 
 
-path = a_star(start,end)
+path = a_star(maze, start, end)
 print(path)
