@@ -1,19 +1,17 @@
-from collections import defaultdict
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 
 class Solution:
-    def findItinerary(self, tickets: List[List[str]]) -> List[str]:
-        graph = defaultdict(list)
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        if inorder:
+            index = inorder.index(preorder.pop(0))
 
-        for start, end in sorted(tickets):
-            graph[start].append(end)
-
-        route, stack = [], ['JFK']
-
-        while stack:
-            while graph[stack[-1]]:
-                stack.append(graph[stack[-1]].pop(0))
-
-            route.append(stack.pop())
-
-        return route[::-1]
+            node = TreeNode(inorder[index])
+            node.left = self.buildTree(preorder, inorder[0:index])
+            node.right = self.buildTree(preorder, inorder[index+1:])
+            return node
