@@ -1,0 +1,9 @@
+## Big-O (Upper Bound)
+
+빅오란 입력값이 무한대로 향할때 함수의 상한을 설명하는 수학적 표기 방법
+
+점근적 실행 시간을 표기하는 방법
+
+## Big-Omega (Lower Bound)
+
+## Big-Seta (Average Bound)
