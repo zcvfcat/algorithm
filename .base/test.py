@@ -1,36 +1,19 @@
+from collections import defaultdict
+
+
 class Solution:
-    def longestPalindrome(self, s: str) -> str:
+    def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+        graph = defaultdict(list)
 
-        def expand(left: int, right: int) -> str:
-            while left >= 0 and right < len(s) and s[left] == s[right]:
-                left -= 1
-                right += 1
-            return s[left + 1: right]
+        for start, end in sorted(tickets):
+            graph[start].append(end)
 
-        if len(s) < 2 or s == s[:: -1]:
-            return s
+        route, stack = [], ['JFK']
 
-        result = ''
+        while stack:
+            while graph[stack[-1]]:
+                stack.append(graph[stack[-1]].pop(0))
 
-        for i in range(len(s) - 1):
-            result = max(result, expand(i, i + 1), expand(i, i + 2), key=len)
+            route.append(stack.pop())
 
-        return result
-
-
-def longestPalindrome(s: str) -> str:
-    if len(s) < 2 or s == s[:: -1]:
-        return s
-
-    def expand(left: int, right: int) -> str:
-        while left >= 0 and right < len(s) and s[left] == s[right]:
-            left -= 1
-            right += 1
-        return s[left + 1: right]
-
-    result = ''
-
-    for i in range(len(s) - 1):
-        result = max(result, expand(i, i + 1), expand(i, i + 2), key=len)
-
-    return result
+        return route[::-1]
