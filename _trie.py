@@ -16,6 +16,7 @@ class Trie:
         node = self.root
         for char in word:
             node = node.children[char]
+
         node.word = True
 
     def search(self, word: str) -> bool:
@@ -35,3 +36,8 @@ class Trie:
             node = node.children[char]
 
         return True
+
+
+tri = Trie()
+
+tri.insert('apple')
