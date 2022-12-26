@@ -1,29 +1,15 @@
+import bisect
+
+
 class Solution:
-    def search(self, nums: list[int], target: int) -> int:
-        if not nums:
-            return -1
+    def findContentChildren(self, g: List[int], s: List[int]) -> int:
+        g.sort()
+        s.sort()
 
-        left, right = 0, len(nums) - 1
-        while left < right:
-            mid = left + (right - left) // 2
+        result = 0
 
-            if nums[mid] > nums[right]:
-                left = mid + 1
-            else:
-                right = mid
-
-        pivot = left
-
-        left, right = 0, len(nums) - 1
-        while left <= right:
-            mid = left + (right - left) // 2
-            mid_pivot = (mid + pivot) % len(nums)
-
-            if nums[mid_pivot] < target:
-                left = mid + 1
-            elif nums[mid_pivot] > target:
-                right = mid - 1
-            else:
-                return mid_pivot
-
-        return -1
+        for i in s:
+            index = bisect.bisect_left(g, i)
+            if index > result:
+                result += 1
+        return result
