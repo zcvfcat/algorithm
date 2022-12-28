@@ -1,15 +1,16 @@
-import bisect
+from collections import defaultdict
 
 
 class Solution:
-    def findContentChildren(self, g: List[int], s: List[int]) -> int:
-        g.sort()
-        s.sort()
+    dp = defaultdict(int)
 
-        result = 0
+    def climbStairs(self, n: int) -> int:
+        if n <= 2:
+            return n
 
-        for i in s:
-            index = bisect.bisect_left(g, i)
-            if index > result:
-                result += 1
-        return result
+        if self.dp[n]:
+            return self.dp[n]
+
+        self.dp[n] = self.climbStairs(n - 1) + self.climbStairs(n - 2)
+
+        return self.dp[n]
