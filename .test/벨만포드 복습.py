@@ -1,4 +1,3 @@
-# O(VE)
 INF = float('inf')
 
 edges = [

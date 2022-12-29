@@ -1,7 +1,9 @@
 # O(E logV)
-import sys
 import heapq
 
+INF = float('inf')
+
+# edge weight
 graph = [
     [],
     [(2, 1), (3, 3)],
@@ -13,31 +15,29 @@ graph = [
 
 node_length = len(graph) - 1
 start_node = 1
-distance = [sys.maxsize for _ in range(node_length + 1)]
+distance = [INF for _ in range(node_length + 1)]
 visited = [False for _ in range(node_length + 1)]
-
 
 def dijkstra(start_node):
     distance[start_node] = 0
 
     q = []
-    heapq.heappush(q, (start_node, 0))
+    heapq.heappush(q,(start_node, 0 ))
 
     while q:
-        node, node_weight = heapq.heappop(q)  # O(logV)
+        node, passed_weight = heapq.heappop(q)
 
-        if distance[node] > node_weight:
+        if distance[node] > passed_weight:
             continue
 
-        for edge, edge_weight in graph[node]:  # O(E)
-            cost = node_weight + edge_weight
+        for edge, weight in graph[node]:
+            cost = passed_weight + weight
 
             if distance[edge] > cost:
                 distance[edge] = cost
 
-                heapq.heappush(q, (edge, cost))
+                heapq.heappush(q,(edge, cost))
 
     return distance
-
 
 print(dijkstra(1))

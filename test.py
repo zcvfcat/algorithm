@@ -1,37 +1,24 @@
-def sort_array(source_array):
-    odd_index = []
-    even_index = []
 
-    odds = []
-    evens = []
+def solution(n, computers):
+    groups = [i for i in range(n)]
 
-    for i, v in enumerate(source_array):
-        if v % 2 == 1:
-            odds.append(v)
-            odd_index.append(i)
-        else:
-            evens.append(v)
-            even_index.append(i)
+    def find(node):
+        if node != groups[node]:
+            groups[node] = find(groups[node])
+        return groups[node]
 
-    odds.sort()
+    def union(node_a, node_b):
+        node_a = find(node_a)
+        node_b = find(node_b)
 
-    s = []
-    while True:
-        if odd_index and even_index:
-            if odd_index[0] < even_index[0]:
-                odd_index.pop(0)
-                s.append(odds.pop(0))
-            else:
-                even_index.pop(0)
-                s.append(evens.pop(0))
-        elif odd_index:
-            s.extend(odds)
-            break
-        else:
-            s.extend(evens)
-            break
-    print(s)
-    return s
+        if node_a != node_b:
+            groups[node_b] = node_a
 
+    for node, edges in enumerate(computers):
+        for edge, value in enumerate(edges):
+            if node != edge and value == 1:
+                union(node, edge)
+    
+    return len(set(map(lambda x: find(x),groups)))
 
-sort_array([5, 3, 2, 8, 1, 4]) == [1, 3, 2, 8, 5, 4]
+print(solution(3, [[1, 1, 0], [1, 1, 1], [0, 1, 1]]))
