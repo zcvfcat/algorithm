@@ -1,4 +1,3 @@
-# O(E logV)
 import heapq
 
 INF = float('inf')
@@ -21,18 +20,14 @@ visited = [False for _ in range(node_length + 1)]
 
 def dijkstra(start_node):
     distance[start_node] = 0
-
     q = []
     heapq.heappush(q, (0, start_node))
 
     while q:
-        passed_weight, node = heapq.heappop(q)
-
-        if distance[node] > passed_weight:
-            continue
+        passed_cost, node = heapq.heappop(q)
 
         for edge, weight in graph[node]:
-            cost = passed_weight + weight
+            cost = weight + passed_cost
 
             if distance[edge] > cost:
                 distance[edge] = cost
