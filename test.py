@@ -1,24 +1,31 @@
+# 17396
+import heapq
 
-def solution(n, computers):
-    groups = [i for i in range(n)]
+INF = float('inf')
 
-    def find(node):
-        if node != groups[node]:
-            groups[node] = find(groups[node])
-        return groups[node]
+node_length, edge_length = map(int, input().split())
+site = [INF]+[*map(int, input().split())]
+graph = [[] for _ in range(node_length)]
+distance = [INF for _ in range(node_length)]
+path = [0 for _ in range(node_length)]
+distance[0] = 0
 
-    def union(node_a, node_b):
-        node_a = find(node_a)
-        node_b = find(node_b)
+for _ in range(edge_length):
+    node, edge, weight = map(int, input().split())
+    graph[node].append((edge, weight))
 
-        if node_a != node_b:
-            groups[node_b] = node_a
+q = []
+heapq.heappush(q, (0, 0))
 
-    for node, edges in enumerate(computers):
-        for edge, value in enumerate(edges):
-            if node != edge and value == 1:
-                union(node, edge)
-    
-    return len(set(map(lambda x: find(x),groups)))
+while q:
+    prev_cost, node = heapq.heappop()
 
-print(solution(3, [[1, 1, 0], [1, 1, 1], [0, 1, 1]]))
+    if distance[node] < prev_cost:
+        continue
+
+    for edge, cost in graph[node]:
+        next_cost = cost + prev_cost
+
+        if distance[edge] > next_cost:
+            distance[edge] = next_cost
+            heapq.heappush(q, (next_cost, edge))
