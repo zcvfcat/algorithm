@@ -11,9 +11,7 @@ graph = [
     [(3, 1), (2, 2)],
 ]
 
-
 visited = [False for _ in range(node_length + 1)]
-
 
 def prim(start_node):
     q = [(0, start_node)]
@@ -27,10 +25,9 @@ def prim(start_node):
             total_cost += cost
 
             for cost, edge in graph[node]:
-                heapq.heappush(q, (cost, edge))
-
+                heapq.heappush(q,(cost,edge))
+    
     return total_cost
-
 
 print(visited)
 print(prim(1))
