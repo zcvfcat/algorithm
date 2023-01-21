@@ -1,20 +1,11 @@
-array = [5, 3, 2, 4, 1, 6, 7, 8, 9]
+def bubble(array):
+    for i in range(len(array) - 1, -1, -1):
+        for j in range(i):
+            if array[j] > array[j + 1]:
+                array[j + 1], array[j] = array[j], array[j + 1]
 
-end = len(array)
-for i in range(end-1, 0, -1):
-    for j in range(i):
-        if array[j+1] < array[j]:
-            array[j+1], array[j] = array[j], array[j + 1]
-
-print(array)
+    return array
 
 
-def bubble(a):
-    for i in range(1, len(a)):
-        for j in range(len(a) - 1):
-            if a[j] > a[j + 1]:
-                a[j], a[j + 1] = a[j + 1], a[j]
-    return a
-
-
-print(bubble([1, 23, 4, 1, 24, 23, 2, 3, 53, 4, 234, 2, ]))
+arr = [5, 4, 3, 2, 1, 6, 7, 8, 9]
+print(bubble(arr))

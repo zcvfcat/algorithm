@@ -1,11 +1,14 @@
-array = [5, 3, 2, 4, 1, 6, 7, 8, 9]
+def select(array) -> list:
+    for i in range(len(array)):
+        index = i
 
-for i in range(len(array)):
-    select_idx = i
-    for j in range(i + 1, len(array)):
-        if array[select_idx] > array[j]:
-            select_idx = j
+        for j in range(i + 1, len(array)):
+            if array[index] > array[j]:
+                index = j
 
-    array[select_idx], array[i] = array[i], array[select_idx]
+        array[i], array[index] = array[index], array[i]
+    return array
 
-print(array)
+
+arr = [5, 4, 3, 2, 1, 6, 7, 8, 9]
+print(select(arr))
