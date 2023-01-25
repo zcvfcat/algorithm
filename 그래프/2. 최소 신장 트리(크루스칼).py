@@ -40,7 +40,6 @@ def kruskal(edges):
         if find(node_a) != find(node_b):
             union(node_a, node_b)
             total_cost += cost
-
     return total_cost
 
 print(parent)

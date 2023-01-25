@@ -1,4 +1,3 @@
-# O(V + E)
 from collections import deque
 
 graph = [
@@ -27,10 +26,9 @@ for node in range(1, node_length):
 
 while q:
     node = q.popleft()
-    print(node)
+
     for edge in graph[node]:
         degrees[edge] -= 1
 
         if degrees[edge] == 0:
             q.append(edge)
-

@@ -21,5 +21,4 @@ union(5, 6)
 union(1, 6)
 
 groups = set(map(lambda x: find(x), parent))
-
 print(groups)

@@ -7,10 +7,10 @@ permutation([0,1,2,3], 2) = ([0], permutation([1, 2, 3], 1)) +
 import itertools
 
 
-def permutations(array: list, tie: int) -> list:
+def permutations(array, tie):
     ans = []
 
-    if tie == 0:
+    if tie ==0:
         return [ans]
 
     for idx in range(len(array)):
