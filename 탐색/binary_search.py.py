@@ -1,25 +1,17 @@
-def binary_search(array, value, low, high):
-    count = 0
+def binary_search(array, value):
+    array.sort()
+    left, right = 0, len(array) - 1
 
-    while low <= high:
-        mid = (low + high) // 2
-        count += 1
+    while left < right:
+        mid = (left + right) // 2
 
-        if value == array[mid]:
-            return mid
-        elif value > array[mid]:
-            low = mid + 1
+        if value > array[mid]:
+            left = mid + 1
         elif value < array[mid]:
-            high = mid - 1
+            right = mid - 1
+        else:
+            return mid
 
 
-array = [5, 1, 2, 3, 4, 9, 11, 13, 14, 17]
-array.sort()
-
-low = 0
-high = len(array)
-
-target = 13
-count = 0
-
-print(binary_search(array, target, low, high))
+array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+print(binary_search(array, 3))
