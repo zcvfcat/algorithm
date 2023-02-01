@@ -1,29 +1,15 @@
-from itertools import permutations
-
-
-def is_prime(n):
-    if n < 2:
-        return False
-
-    for i in range(2, int(n**0.5) + 1):
-        if n % i == 0:
-            return False
-
-    return True
-
-
 def solution(numbers):
-    lst = []
-    for l in range(1, len(numbers)):
-        k = [*map(lambda x: ''.join(x), permutations(numbers, l))]
-        lst.extend(k)
+    ans = [-1] * len(numbers)
+    stack = []
+    
+    for i in range(len(numbers)):
+        while stack and numbers[stack[-1]] < numbers[i]:
+            ans[stack.pop()] = numbers[i]
 
-    count = 0
-    print(lst)
-    for k in set(map(lambda k: int(k), lst)):
-        if is_prime(k):
-            count += 1
-    return count
+        stack.append(i)
+
+    return ans
 
 
-print(solution("011"))
+print(solution([2, 3, 3, 5]) == [3, 5, 5, -1])
+print(solution([9, 1, 5, 3, 6, 2]) == [-1, 5, 6, 6, -1, -1])
