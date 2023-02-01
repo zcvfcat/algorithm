@@ -1,6 +1,6 @@
 def solution(numbers):
     ans = [-1 for _ in range(len(numbers))]
-    stack = [0]
+    stack = []
 
     for i in range(len(numbers)):
         while stack:
