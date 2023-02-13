@@ -25,7 +25,7 @@ def dijkstra(start_node, graph):
         prev_cost, vertex = heappop(q)
         
         if distance[vertex] < prev_cost:
-            cont5inue
+            continue
 
         for edge, next_cost in graph[vertex]:
             cost = prev_cost + next_cost
