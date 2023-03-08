@@ -2,11 +2,10 @@ import random
 
 
 def insert(array):
-    for limit in range(1, len(array)):
-
-        for idx in range(limit, 0, -1):
-            if array[idx - 1] > array[idx]:
-                array[idx - 1], array[idx] = array[idx], array[idx - 1]
+    for idx in range(1, len(array)):
+        while idx > 0 and array[idx - 1] > array[idx]:
+            array[idx - 1], array[idx] = array[idx], array[idx - 1]
+            idx -= 1
 
     return array
 
