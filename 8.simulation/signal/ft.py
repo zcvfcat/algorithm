@@ -1,15 +1,20 @@
 import math
 
-def fourier_transform(signal):
-    N = len(signal)
-    spectrum = []
-    
-    for i in range(N):
-        re, im = 0.0, 0.0
-        for j in range(N):
-            angle = 2 * math.pi * i * j / N
-            re += signal[j] * math.cos(angle)
-            im -= signal[j] * math.sin(angle)
-        spectrum.append((re, im))
-    
-    return spectrum
+
+def fourier_transform(x):
+    N = len(x)
+    X = []
+    for k in range(N):
+        # X(k)를 계산합니다.
+        Xk = 0
+        for n in range(N):
+            Xk += x[n] * math.e**(-1j * 2 * math.pi * k * n / N)
+        X.append(Xk)
+    return X
+
+
+# 사용 예시
+if __name__ == "__main__":
+    x = [1, 2, 3, 4]
+    result = fourier_transform(x)
+    print(result)
