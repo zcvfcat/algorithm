@@ -1,25 +1,40 @@
-def dfs(graph, visited, node):
-    visited[node] = True
+def dfs(graph, start, end, visited=None, path=None):
+    if visited is None:
+        visited = set()
+    if path is None:
+        path = []
 
-    for edge in graph[node]:
-        if visited[edge] is False:
-            visited[edge] = True
-            dfs(graph, visited, edge)
+    visited.add(start)
+    path.append(start)
 
-    return visited
+    if start == end:
+        return path
+
+    for neighbor in graph[start]:
+        if neighbor not in visited:
+            result = dfs(graph, neighbor, end, visited, path)
+            if result is not None:
+                return result
+
+    path.pop()
+    return None
 
 
-graph = [
-    [],
-    [2, 3, 8],
-    [1, 6, 8],
-    [1, 4, 5],
-    [3],
-    [3],
-    [2, 7],
-    [6],
-    [1, 2],
-]
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': ['F'],
+    'F': []
+}
 
-visited = [False for _ in range(len(graph))]
-print(dfs(graph, visited, 1))
+start = 'A'
+end = 'F'
+
+path = dfs(graph, start, end)
+
+if path is not None:
+    print(f"경로: {' -> '.join(path)}")
+else:
+    print("경로가 존재하지 않습니다.")

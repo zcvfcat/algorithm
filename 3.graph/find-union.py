@@ -1,24 +1,24 @@
-def find(parents, node):
-    if parents[node] != node:
-        parents[node] = find(parents, parents[node])
-    return parents[node]
+class DisjointSet:
+    def __init__(self, n):
+        self.parent = list(range(n))
+
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union(self, x, y):
+        px, py = self.find(x), self.find(y)
+        if px != py:
+            self.parent[px] = py
 
 
-def union(parents, node_a, node_b):
-    node_a = find(parents, node_a)
-    node_b = find(parents, node_b)
+ds = DisjointSet(6)
 
-    if node_b != node_a:
-        parents[node_b] = node_a
+ds.union(0, 1)
+ds.union(1, 2)
+ds.union(3, 4)
+ds.union(4, 5)
 
-
-parents = [node for node in range(10)]
-
-union(parents, 1, 4)
-union(parents, 5, 6)
-union(parents, 1, 6)
-
-print(parents)
-
-group = set(map(lambda x: find(parents, x), parents))
-print(group)
+print(ds.find(2))  # 0
+print(ds.find(5))  # 3

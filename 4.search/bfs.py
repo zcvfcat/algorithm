@@ -1,33 +1,40 @@
 from collections import deque
 
 
-def bfs(graph, start_node):
-    visited = [False for _ in range(len(graph))]
+def bfs(graph, start, goal):
+    queue = deque()
+    queue.append(start)
 
-    q = deque([start_node])
-    visited[start_node] = True
+    visited = set()
+    visited.add(start)
 
-    while q:
-        node = q.popleft()
+    parent = {start: None}
 
-        for edge in graph[node]:
-            if visited[edge] is False:
-                visited[edge] = True
-                q.append(edge)
+    while queue:
+        current = queue.popleft()
+        if current == goal:
+            break
 
-    return visited
+        for neighbor in graph[current]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                parent[neighbor] = current
+                queue.append(neighbor)
+
+    path = []
+    node = goal
+    while node is not None:
+        path.append(node)
+        node = parent[node]
+
+    path.reverse()
+
+    return path
 
 
-graph = [
-    [],
-    [2, 3, 8],
-    [1, 6, 8],
-    [1, 4, 5],
-    [3],
-    [3],
-    [2, 7],
-    [6],
-    [1, 2],
-]
+graph = {'A': ['B', 'C'],
+         'B': ['A', 'D'],
+         'C': ['A', 'D'],
+         'D': ['B', 'C']}
 
-print(bfs(graph, 1))
+print(bfs(graph, 'A', 'D'))
