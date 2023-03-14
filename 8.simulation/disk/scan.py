@@ -1,3 +1,4 @@
+# 엘리베이터 알고리즘
 def scan(start, requests):
     # 서비스할 요청들을 저장할 변수를 초기화합니다.
     serviced_req = []
