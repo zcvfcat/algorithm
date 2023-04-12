@@ -13,9 +13,9 @@ graph = [
 visited = [False for _ in range(len(graph))]
 
 def dfs(graph, node):
+    visited[node] = True
     for edge in graph[node]:
         if visited[edge] is False:
-            visited[edge] = True
             dfs(graph, edge)
 
 dfs(graph, 1)
