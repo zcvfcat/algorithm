@@ -8,7 +8,6 @@ class Node:
 class AVL_Tree: 
   
     def insert(self, root, key): 
-  
         if not root: 
             return Node(key) 
         elif key < root.data: 
