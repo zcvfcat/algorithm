@@ -16,16 +16,16 @@ def bfs(graph, start, end):
     visited = [0 for _ in range(len(graph))]
 
     q = deque([start])
-    visited[start] = True
+    visited[start] = 1
 
     while q:
         node = q.popleft()
 
         if node == end:
-            return visited[end]
+            return visited
 
         for edge in graph[node]:
-            if visited[edge] == 0:
+            if visited[edge] == 0 or visited[edge] > visited[node] + 1:
                 visited[edge] = visited[node] + 1
                 q.append(edge)
 
