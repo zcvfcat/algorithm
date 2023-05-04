@@ -12,9 +12,20 @@ def make_trie(words):
         curr_dict["*"] = True
     return trie
 
+def in_trie(trie, word):
+    edges = trie
+
+    for letter in word:
+        if letter not in edges:
+            return False
+        
+        edges = edges[letter]
+    
+    return "*" in edges
+
 words = ['hi','hello','world']
 
 trie = make_trie(words)
 
-print(trie)
+print(in_trie(trie, 'world'))
 
