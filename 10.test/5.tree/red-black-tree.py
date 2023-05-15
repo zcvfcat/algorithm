@@ -91,5 +91,40 @@ class RedBlackTree:
         x.parent = y
 
     def right_rotate(self, x):
-        pass
+        y = x.left
+        x.left = y.right
+
+        if y.right != None:
+            y.right.parent = x
+        
+        y.parent = x.parent
+
+        if x.parent == None:
+            self.root = y
+        elif x == x.parent.right:
+            x.parent.right = y
+        else:
+            x.parent.left = y
+        
+        y.right = x
+        x.parent = y
+
+    def in_order(self, node):
+        if node != None:
+            self.in_order(node.left)
+            print(node.data, end=' ')
+            if node.color == 0:
+                print('(RED)', end=' ')
+            else:
+                print('(BLACK)', end=' ')
+            self.in_order(node.right)
+    
+tree = RedBlackTree()
+
+lst = [7, 6, 5, 4, 3, 2, 1]
+for i in lst:
+    tree.insert(i)
+
+tree.in_order(tree.root)
+
     
