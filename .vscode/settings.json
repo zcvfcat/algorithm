@@ -8,5 +8,6 @@
     "kruskal",
     "timsort",
     "warshall"
-  ]
+  ],
+  "audioCues.volume": 0
 }
