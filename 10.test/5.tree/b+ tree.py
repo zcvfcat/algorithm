@@ -15,4 +15,3 @@ class BPlusTreeNode():
 class BPlusTree():
     def __init__(self, max_num_keys = 5):
         self.root = BPlusTreeNode(max_num_keys=max_num_keys)
-        
