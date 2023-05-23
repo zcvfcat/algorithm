@@ -1,4 +1,4 @@
-def two_sum(nums, target):
+def two_point(nums, target):
     nums_dict = {}
 
     for i, num in enumerate(nums):
