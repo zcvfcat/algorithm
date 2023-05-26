@@ -15,6 +15,8 @@ def union(a, b):
         parents[b] = a
 
 # edges (weight, node, edge)
+
+
 def kruskal(edges: list):
     edges.sort()  # weight 기준 최소값
 
