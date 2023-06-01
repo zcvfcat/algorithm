@@ -18,7 +18,7 @@ def merge(array):
     merged += left
     merged += right
 
-    return array
+    return merged
 
 
 # Test Case 1
