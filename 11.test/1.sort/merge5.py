@@ -5,15 +5,15 @@ def merge(array):
         return array
     
     mid = len(array) // 2
-    
     left, right = deque(merge(array[:mid])), deque(merge(array[mid:]))
 
     merged = []
+
     while left and right:
         if left[0] < right[0]:
-            merge += [left.popleft()]
+            merged += [left.popleft()]
         elif right[0] <= left[0]:
-            merge += [right.popleft()]
+            merged += [right.popleft()]
     
     merged += left
     merged += right
@@ -40,4 +40,3 @@ print(merge(arr3) == expected_output3)
 arr4 = [5, 1, 7, 9, 2, 10]
 expected_output4 = [1, 2, 5, 7, 9, 10]
 print(merge(arr4) == expected_output4)
-
