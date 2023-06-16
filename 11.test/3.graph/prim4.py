@@ -1,16 +1,19 @@
 from heapq import heapify, heappop, heappush
-from math import inf
 
-def prim(edges, start_node,):
-    visited = [inf for _ in range(len(edges))]
-    visited[start_node] = 1
-    
-    candidate = edges[start_node]
+
+# graph = [[weight, edge]] index = node
+def prim(graph, start_node):
+    visited = [False for _ in range(len(graph))]
+    visited[start_node] = True
+
+    candidate = graph[start_node]
     heapify(candidate)
 
-    mst = []
-    total_cost = 0
+    total = 0
 
     while candidate:
-        cost, node, edge = heappop(candidate)
+        if visited:
+            return total
+
+        cost, edge = heappop(candidate)
         
