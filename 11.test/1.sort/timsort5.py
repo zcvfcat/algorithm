@@ -42,7 +42,7 @@ def tim_sort(array: list, unit=32):
             merged = merge(array, start, mid, end)
             array[start: start+len(merged)] = merged
         
-        size *= 2
+        round_size *= 2
     
     return array
 
