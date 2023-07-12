@@ -2,13 +2,14 @@ def combinations(array, tie):
     if tie == 0:
         return [[]]
 
-    combined = []
+    tied = []
 
     for node, value in enumerate(array):
         for edges in combinations(array[node + 1:], tie - 1):
-            combined += [(value, *edges)]
+            tied += [(value, *edges)]
 
-    return combined
+    return tied
+
 
 array = [1, 2, 3, 4, 5]
 tie = 3
