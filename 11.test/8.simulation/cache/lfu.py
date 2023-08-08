@@ -11,7 +11,7 @@ def lfu(cacheSize, pages):
             cache.remove(page)
             cache.append(page)
         else:
-            pageFault += 1
+            pageFaults += 1
 
             if len(cache) == cacheSize:
                 freq = [cache.count(c) for c in cache]
@@ -19,7 +19,7 @@ def lfu(cacheSize, pages):
                 cache.pop(idx)
 
             cache.append(page)
-    return pageFault
+    return pageFaults
 
 
 print(lfu(3, [2, 3, 1, 3, 2, 1, 4, 3]))
