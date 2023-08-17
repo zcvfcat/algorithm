@@ -1,6 +1,6 @@
 import random
 
-
+# 나중에 따로 구현
 def quick(arr):
     def sort(first, last):
         if first >= last:
@@ -11,7 +11,7 @@ def quick(arr):
         right = last
         
         while left <= right:
-            while left <= last and pivot > arr[first]:
+            while left <= last and pivot > arr[left]:
                 left += 1
             
             while pivot < arr[right]:
@@ -20,7 +20,7 @@ def quick(arr):
             if left <= right:
                 arr[left], arr[right] = arr[right], arr[left]
                 left += 1
-                right += 1
+                right -= 1
         
         arr[first], arr[right] = arr[right], arr[first]
     
