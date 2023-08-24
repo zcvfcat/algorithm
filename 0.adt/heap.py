@@ -21,7 +21,8 @@ class Heap:
         if len(self.q) == 1:
             return self.q.pop()
 
-        max_value = self.q.pop(0)
+        max_value = self.q[0]
+        self.q[0] = self.q.pop() # swap
 
         idx = 0
 
@@ -42,6 +43,7 @@ class Heap:
             r_idx = (idx * 2) + 2
 
         return max_value
+
 
 h = Heap()
 
