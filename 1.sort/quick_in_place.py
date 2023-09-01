@@ -1,17 +1,16 @@
 import random
 
-# 나중에 따로 구현
 def quick(arr):
-    def sort(first, last):
-        if first >= last:
+    def sort(start, end):
+        if start >= end:
             return
 
-        pivot = arr[first]
-        left = first + 1
-        right = last
+        pivot = arr[start]
+        left = start + 1
+        right = end
         
         while left <= right:
-            while left <= last and pivot > arr[left]:
+            while left <= end and pivot > arr[left]:
                 left += 1
             
             while pivot < arr[right]:
@@ -22,12 +21,12 @@ def quick(arr):
                 left += 1
                 right -= 1
         
-        arr[first], arr[right] = arr[right], arr[first]
+        arr[start], arr[right] = arr[right], arr[start]
     
-        sort(first, right - 1)
-        sort(left, last)
+        sort(start, right - 1)
+        sort(left, end)
 
-    return sort(0, len(arr))
+    return sort(0, len(arr) - 1)
 
 array = [random.randint(0, 10) for _ in range(20)]
 print(array)

@@ -23,7 +23,7 @@ def merge(arr):
                 merged.append(left.pop(0))
             else:
                 merged.append(right.pop(0))
-        
+
         arr[low:high] = merged + left + right
 
     return sort(0, len(arr))
