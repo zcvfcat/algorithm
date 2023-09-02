@@ -2,8 +2,8 @@
     우선순위 큐
 
     시간 복잡도
-        삽입(Insert): O(log2n)
-        삭제(Delete): O(log2n)
+        삽입(insert): O(log2n)
+        삭제(delete): O(log2n)
         최솟값/최댓값 확인(Get Minimum/Maximum): O(1)
 
     사용하는 이유

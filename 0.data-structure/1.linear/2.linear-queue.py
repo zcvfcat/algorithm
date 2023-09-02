@@ -3,11 +3,11 @@
         선입선출(FIFO)
 
     시간복잡도
-        Enqueue(삽입): O(1)
-        Dequeue(삭제): O(1)
-        Peek(조회): O(1)
-        IsEmpty(비어있는지 확인): O(1)
-        Size(크기 확인): O(1)
+        enqueue(삽입): O(1)
+        dequeue(삭제): O(1)
+        peek(조회): O(1)
+        isEmpty(비어있는지 확인): O(1)
+        size(크기 확인): O(1)
 
     사용 이유
         순차적인 데이터 처리

@@ -3,9 +3,9 @@
         큐(Queue)와 스택(Stack)의 특성을 모두 갖는 자료구조
 
     시간 복잡도
-        삽입(Insert): O(1)
-        삭제(Delete): O(1)
-        조회(Access): O(1)
+        삽입(insert): O(1)
+        삭제(delete): O(1)
+        조회(search): O(1)
 
     왜 사용하는가?
         1. 효율적인 데이터 조작
