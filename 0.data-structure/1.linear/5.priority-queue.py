@@ -20,7 +20,7 @@
 """
 
 
-class Heap:
+class PriorityQueue:
     def __init__(self, q=None) -> None:
         if q == None:
             self.q = []
@@ -72,7 +72,7 @@ class Heap:
         return max_value
 
 
-h = Heap()
+h = PriorityQueue()
 
 h.insert(1)
 h.insert(2)
