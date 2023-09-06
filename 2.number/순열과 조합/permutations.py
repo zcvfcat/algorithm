@@ -1,5 +1,5 @@
 def permutations(arr, tie):
-    if tie < 2:
+    if tie < 1:
         return [[]]
 
     tied = []
