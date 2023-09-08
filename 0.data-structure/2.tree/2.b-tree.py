@@ -22,31 +22,14 @@
 """
 
 
-class Node:
-    def __init__(self, leaf=True):
-        self.leaf = leaf
-        self.keys = []
-        self.children = []
+class BTreeNode:
+    def __init__(self, keys, children, is_leaf) -> None:
+        self.keys = keys
+        self.children = children
+        self.is_leaf = is_leaf
 
 
 class BTree:
-    def __init__(self, t):
-        self.root = Node(leaf=True)
-        self.t = t  # 차수
-
-    def insert(self, key):
-        root = self.root
-
-        if len(root.keys) == (2 * self.t) - 1:
-            new_root = Node(leaf=False)
-            new_root.children.append(self.root)
-
-    def _insert_non_full(self, node, key):
-        i = len(node.keys) - 1
-
-        if node.leaf:
-            node.keys.append(None)
-        
-
-    def _split(self, parent, index):
-        t = self.t
+    def __init__(self, t) -> None:
+        self.root = BTreeNode([], [], True)
+        self.t = t
