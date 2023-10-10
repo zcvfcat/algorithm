@@ -13,20 +13,20 @@ def solution(arr: list[list[int]]):
 
     q = deque([(0, 0, 0)])
 
-    tmp = 0
-
     while q:
         y, x, d_i = q.popleft()
-        if tmp == 32:
-            break
-        tmp += 1
-        print(y, x)
+
         if (y, x) == end:
             return distances[y][x]
 
         for i in range(4):
-            dy, dx = d[(d_i + i) % 4]
-            ky, kx = d[(d_i + i - 1) % 4]
+            curr_i, prev_i = (d_i + i) % 4, (d_i + i - 1) % 4
+
+            # 가는 방향
+            dy, dx = d[curr_i]
+
+            # 짚는 방향
+            ky, kx = d[prev_i]
 
             ny, nx = y + dy, x + dx
             kky, kkx = y + ky, x + kx
@@ -34,18 +34,18 @@ def solution(arr: list[list[int]]):
             # case 1, 벽이 존재할 경우
             if in_boundary(ny, nx) and (not in_boundary(kky, kkx) or arr[kky][kkx] == 1):
                 distances[ny][nx] = distances[y][x] + 1
-                q.append((ny, nx, i))
+                q.append((ny, nx, curr_i))
                 break
 
             # case 2, 벽이 없을 경우
-            if in_boundary(kky, kkx) and arr[kky][kkx] == 0 and d_i != (d_i + i - 1):
-                distances[ny][nx] = distances[y][x] + 1
-                q.append((ny, nx, i))
+            if in_boundary(kky, kkx) and arr[kky][kkx] == 0:
+                distances[kky][kkx] = distances[y][x] + 1
+                q.append((kky, kkx, prev_i))
                 break
 
     return None
 
 
-arr = [[0, 1, 1, 0, 1, 0], [0, 1, 0, 0, 0, 0]]
+arr = [[0, 1, 0, 0], [0, 1, 0, 0], [0, 0, 0, 0], [0, 1, 0, 0]]
 result = solution(arr)
 print(result)
