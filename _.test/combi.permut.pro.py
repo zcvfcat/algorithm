@@ -11,4 +11,4 @@ print('nCr 순서가 필요없는 경우')
 print([*combinations(k, l)])
 
 print('product')
-print(product(k, l))
+print([*product(k, ['2','3'])])
