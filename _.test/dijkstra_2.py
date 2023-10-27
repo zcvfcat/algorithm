@@ -9,6 +9,7 @@ def dijkstra(graph, start, end):
 
     while q:
         cost, node = heappop(q)
+        print(cost, node)
 
         if distance[node] < cost:
             continue
@@ -19,3 +20,8 @@ def dijkstra(graph, start, end):
             if distance[edge] > next_cost:
                 heappush((next_cost, edge))
                 distance[edge] = next_cost
+
+    return distance[end]
+
+
+print(dijkstra([[(1, 2), (2, 3)], [(0, 1), (2, 3)], [(0, 2), (1, 3)]], 0, 2))
