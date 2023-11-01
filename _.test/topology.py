@@ -1,7 +1,7 @@
 from collections import deque
 
 def topology(graph):
-    in_degree = [0 for _ in len(graph)]
+    in_degree = [0 for _ in range(len(graph))]
 
     for edges in graph:
         for edge in edges:
@@ -10,7 +10,7 @@ def topology(graph):
     q = deque()
 
     for node, status in enumerate(in_degree):
-        if status ==0:
+        if status == 0:
             q.append(node)
     
     sorted_array = []
