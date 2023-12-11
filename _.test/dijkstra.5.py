@@ -19,5 +19,4 @@ def dijkstra(graph: list[list[int]], start: int, end: int):
                 q.append((total, edge))
                 distances[edge] = total
     
-    return distances[edge]
-    
+    return distances[end]
