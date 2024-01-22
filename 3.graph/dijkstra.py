@@ -10,8 +10,8 @@ def dijkstra(graph,start,end):
     while q:
         node, cost = heappop(q)
         
-        if node == end:
-            return visited[end]
+        if visited[node] < cost:
+            continue
         
         for edge, weight in graph[node]:
             next_cost = cost + weight
