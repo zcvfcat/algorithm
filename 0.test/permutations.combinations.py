@@ -5,7 +5,7 @@ def permutations(array, tie):
     merged = []
 
     for node, value in enumerate(array):
-        for edge in permutations(array[:node] + array[node + 1:], tie):
+        for edge in permutations(array[node + 1:] + array[:node], tie):
             merged.append((value, *edge))
     return merged
 
