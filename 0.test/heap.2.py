@@ -25,6 +25,3 @@ def heap(arr):
         heapify(arr, i, 0)
 
     return arr
-
-
-print(heap([5, 4, 3, 2, 1]))
