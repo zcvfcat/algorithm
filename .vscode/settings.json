@@ -9,8 +9,5 @@
     "kruskal",
     "timsort",
     "warshall"
-  ],
-  "accessibility.signalOptions": {
-    "volume": 0
-  }
+  ]
 }
