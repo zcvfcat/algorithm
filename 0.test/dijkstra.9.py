@@ -1,7 +1,5 @@
 from heapq import heappop, heappush
 from math import inf
-
-
 def dijkstra(graph, start, end):
     distance = [inf for _ in range(len(graph))]
     distance[start] = 0
