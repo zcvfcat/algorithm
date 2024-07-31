@@ -30,6 +30,21 @@ def bfs(graph: list[list[int]], target: int) -> bool:
 
     return False
 
+# 1번 그래프
+# 0 - 1
+# |   |
+# 3 - 2
+
+# 2번 그래프
+# 0 - 1 - 2
+#     |
+#     3 - 4
+
+# 3번 그래프
+# 0 - 1   3
+#     |
+#     2
+
 def run_tests():
     test_graphs = [
         [[1, 3], [0, 2], [1, 3], [0, 2]],  # 그래프 1
