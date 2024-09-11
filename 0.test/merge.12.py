@@ -13,11 +13,3 @@ def merge(array):
             merged.append(right.pop(0))
 
     return merged + left + right
-
-
-
-def t(a, *b):
-    
-    print(b[0], b[1])
-
-t(1,2)
