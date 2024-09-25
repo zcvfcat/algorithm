@@ -1,7 +1,7 @@
 def mst(graph: list[(int, int)]):
     parents = [i for i in range(len(graph))]
 
-    def find(a, b):
+    def find(a):
         if parents[a] != a:
             parents[a] = find(parents[a])
         return parents[a]
