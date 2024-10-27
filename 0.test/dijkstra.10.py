@@ -3,7 +3,6 @@ from math import inf
 
 
 def dijkstra(graph, start):
-    visited = set()
     distances = {vertex: inf for vertex in graph}
     distances[start] = 0
 
@@ -14,8 +13,6 @@ def dijkstra(graph, start):
 
         if current_distance > distances[current_vertex]:
             continue
-
-        visited.add(current_vertex)
 
         for neighbor, weight in graph[current_vertex].items():
             distance = current_distance + weight
